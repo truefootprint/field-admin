@@ -19,6 +19,8 @@ import project_questions from "./resources/project_questions";
 import project_summaries from "./resources/project_summaries";
 import project_types from "./resources/project_types";
 import projects from "./resources/projects";
+import question_types from "./resources/question_types";
+import question_data_types from "./resources/question_data_types";
 import resolutions from "./resources/resolutions";
 import responses from "./resources/responses";
 import roles from "./resources/roles";
@@ -50,6 +52,8 @@ const App = () => (
     <Resource {...project_types} />
     <Resource {...projects} />
     <Resource {...questions} />
+    <Resource {...question_types} />
+    <Resource {...question_data_types} />
     <Resource {...resolutions} />
     <Resource {...responses} />
     <Resource {...roles} />
