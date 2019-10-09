@@ -1,5 +1,5 @@
 import React from "react";
-import { Create, Datagrid, DateField, Edit, List, SimpleForm, TextField, TextInput } from "react-admin";
+import { Create, Datagrid, DateField, Edit, List, SimpleForm, TextField, TextInput, LongTextInput } from "react-admin";
 
 const form = ({ location }) => {
   const newRecord = location.pathname.match(/create/);
@@ -9,6 +9,7 @@ const form = ({ location }) => {
       {newRecord ? null : <TextField source="id" />}
 
       <TextInput source="name" />
+      <LongTextInput source="description" />
 
       {newRecord ? null : <TextField source="created_at" />}
 
@@ -26,6 +27,7 @@ export default {
       <Datagrid rowClick="edit">
         <TextField source="id" />
         <TextField source="name" />
+        <TextField source="description" />
         <DateField source="created_at" showTime />
         <DateField source="updated_at" showTime />
       </Datagrid>
