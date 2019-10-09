@@ -31,7 +31,7 @@ const form = ({ location }) => {
       </ReferenceInput>
 
       <ReferenceInput source="topic_id" reference="topics">
-        <SelectInput source="name" />
+        <SelectInput />
       </ReferenceInput>
 
       <TextInput source="text" />
