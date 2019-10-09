@@ -1,5 +1,5 @@
 import React from "react";
-import { Create, Datagrid, DateField, DisabledInput, Edit, List, SimpleForm, TextField } from "react-admin";
+import { Create, Datagrid, DateField, Edit, List, SimpleForm, TextField } from "react-admin";
 import { BooleanInput, NumberInput, RadioButtonGroupInput, ReferenceInput, SelectInput, TextInput } from "react-admin";
 import Conditional from "../components/conditional";
 
@@ -8,11 +8,13 @@ const form = ({ location }) => {
 
   return (
     <SimpleForm>
-      {newRecord ? null : <DisabledInput source="id" />}
+      {newRecord ? null : <TextField source="id" />}
 
-      {newRecord ? null : <DisabledInput source="created_at" />}
+      <TextInput source="text" />
 
-      {newRecord ? null : <DisabledInput source="updated_at" />}
+      <ReferenceInput source="topic_id" reference="topics">
+        <SelectInput />
+      </ReferenceInput>
 
       <ReferenceInput source="type" reference="question_types">
         <RadioButtonGroupInput />
@@ -30,11 +32,9 @@ const form = ({ location }) => {
         <RadioButtonGroupInput />
       </ReferenceInput>
 
-      <ReferenceInput source="topic_id" reference="topics">
-        <SelectInput />
-      </ReferenceInput>
+      {newRecord ? null : <TextField source="created_at" />}
 
-      <TextInput source="text" />
+      {newRecord ? null : <TextField source="updated_at" />}
     </SimpleForm>
   );
 };
