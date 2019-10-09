@@ -1,6 +1,8 @@
 import React from "react";
 import { Create, Datagrid, DateField, Edit, List, SimpleForm, TextField } from "react-admin";
 import { BooleanInput, NumberInput, RadioButtonGroupInput, ReferenceInput, SelectInput, TextInput } from "react-admin";
+import { ReferenceField, NumberField, BooleanField } from "react-admin";
+
 import Conditional from "../components/conditional";
 
 const form = ({ location }) => {
@@ -47,8 +49,25 @@ export default {
     <List {...props}>
       <Datagrid rowClick="edit">
         <TextField source="id" />
-        <DateField source="created_at" />
-        <DateField source="updated_at" />
+        <TextField source="text" />
+
+        <ReferenceField source="topic_id" reference="topics">
+          <TextField source="name" />
+        </ReferenceField>
+
+        <ReferenceField source="type" reference="question_types" linkType={false}>
+          <TextField source="id" />
+        </ReferenceField>
+
+        <NumberField source="expected_length" />
+        <BooleanField source="multiple_answers" />
+
+        <ReferenceField source="data_type" reference="question_data_types" linkType={false}>
+          <TextField source="id" />
+        </ReferenceField>
+
+        <DateField source="created_at" showTime />
+        <DateField source="updated_at" showTime />
       </Datagrid>
     </List>
   ),
