@@ -19,7 +19,7 @@ const form = ({ location }) => {
       </ReferenceInput>
 
       <ReferenceInput source="type" reference="question_types">
-        <RadioButtonGroupInput />
+        <RadioButtonGroupInput optionText="id" />
       </ReferenceInput>
 
       <Conditional when={d => d.type === "FreeTextQuestion"}>
@@ -31,7 +31,7 @@ const form = ({ location }) => {
       </Conditional>
 
       <ReferenceInput source="data_type" reference="question_data_types">
-        <RadioButtonGroupInput />
+        <RadioButtonGroupInput optionText="id" />
       </ReferenceInput>
 
       {newRecord ? null : <TextField source="created_at" />}
@@ -55,16 +55,10 @@ export default {
           <TextField source="name" />
         </ReferenceField>
 
-        <ReferenceField source="type" reference="question_types" linkType={false}>
-          <TextField source="id" />
-        </ReferenceField>
-
+        <TextField source="type" />
         <NumberField source="expected_length" />
         <BooleanField source="multiple_answers" />
-
-        <ReferenceField source="data_type" reference="question_data_types" linkType={false}>
-          <TextField source="id" />
-        </ReferenceField>
+        <TextField source="data_type" />
 
         <DateField source="created_at" showTime />
         <DateField source="updated_at" showTime />

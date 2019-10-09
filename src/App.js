@@ -61,6 +61,7 @@ const App = () => (
 
     <Resource name="question_types" />
     <Resource name="question_data_types" />
+    <Resource name="issue_subject_types" />
   </Admin>
 );
 

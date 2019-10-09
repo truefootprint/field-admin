@@ -9,7 +9,7 @@ const form = ({ location }) => {
     <SimpleForm>
       {newRecord ? null : <TextField source="id" />}
 
-      <NumberInput label="Project question ID" source="project_question_id" />
+      <NumberInput label="Project question id" source="project_question_id" />
 
       <TextInput source="value" />
 
