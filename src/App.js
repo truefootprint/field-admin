@@ -8,6 +8,7 @@ import completion_questions from "./resources/completion_questions";
 import default_activities from "./resources/default_activities";
 import default_expected_values from "./resources/default_expected_values";
 import default_questions from "./resources/default_questions";
+import documents from "./resources/documents";
 import expected_values from "./resources/expected_values";
 import follow_up_activities from "./resources/follow_up_activities";
 import involvements from "./resources/involvements";
@@ -38,6 +39,7 @@ const App = () => (
     <Resource {...default_activities} />
     <Resource {...default_expected_values} />
     <Resource {...default_questions} />
+    <Resource {...documents} />
     <Resource {...expected_values} />
     <Resource {...follow_up_activities} />
     <Resource {...involvements} />
@@ -62,6 +64,7 @@ const App = () => (
     <Resource name="question_types" />
     <Resource name="question_data_types" />
     <Resource name="issue_subject_types" />
+    <Resource name="source_material_subject_types" />
   </Admin>
 );
 
