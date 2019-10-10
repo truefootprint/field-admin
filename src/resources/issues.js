@@ -1,58 +1,36 @@
 import React from "react";
-import { Create, Datagrid, DateField, Edit, List, SimpleForm, TextField } from "react-admin";
-import { BooleanInput, NumberInput, RadioButtonGroupInput, ReferenceInput, SelectInput } from "react-admin";
-import { ReferenceField, NumberField, BooleanField, LongTextInput } from "react-admin";
+import { BooleanInput, NumberInput, LongTextInput, ReferenceInput, SelectInput, RadioButtonGroupInput } from "react-admin";
+import { BooleanField, NumberField, TextField, ReferenceField } from "react-admin";
+import createResource from "../extensions/create_resource";
 
-const form = ({ location }) => {
-  const newRecord = location.pathname.match(/create/);
-
-  return (
-    <SimpleForm>
-      {newRecord ? null : <TextField source="id" />}
-
-      <ReferenceInput source="subject_type" reference="issue_subject_types">
-        <RadioButtonGroupInput optionText="id" />
-      </ReferenceInput>
-
-      <NumberInput label="Subject id" source="subject_id" />
-
-      <ReferenceInput source="user_id" reference="users">
-        <SelectInput optionText="name" />
-      </ReferenceInput>
-
-      <LongTextInput source="description" />
-
-      <BooleanInput source="critical" />
-
-      {newRecord ? null : <TextField source="created_at" />}
-
-      {newRecord ? null : <TextField source="updated_at" />}
-    </SimpleForm>
-  );
-};
-
-export default {
+export default createResource({
   name: "issues",
-  edit: (props) => <Edit {...props}>{form(props)}</Edit>,
-  create: (props) => <Create {...props}>{form(props)}</Create>,
-  list: (props) => (
-    <List {...props}>
-      <Datagrid rowClick="edit">
-        <TextField source="id" />
 
-        <TextField source="subject_type" />
-        <NumberField label="Subject id" source="subject_id" />
+  formFields: (props) => [
+    <ReferenceInput source="subject_type" reference="issue_subject_types">
+      <RadioButtonGroupInput optionText="id" />
+    </ReferenceInput>,
 
-        <ReferenceField source="user_id" reference="users">
-          <TextField source="name" />
-        </ReferenceField>
+    <NumberInput label="Subject id" source="subject_id" />,
 
-        <TextField source="description" />
-        <BooleanField source="critical" />
+    <ReferenceInput source="user_id" reference="users">
+      <SelectInput optionText="name" />
+    </ReferenceInput>,
 
-        <DateField source="created_at" showTime />
-        <DateField source="updated_at" showTime />
-      </Datagrid>
-    </List>
-  ),
-};
+    <LongTextInput source="description" />,
+
+    <BooleanInput source="critical" />,
+  ],
+
+  gridFields: (props) => [
+    <TextField source="subject_type" />,
+    <NumberField label="Subject id" source="subject_id" />,
+
+    <ReferenceField source="user_id" reference="users">
+      <TextField source="name" />
+    </ReferenceField>,
+
+    <TextField source="description" />,
+    <BooleanField source="critical" />,
+  ],
+});

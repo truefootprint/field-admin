@@ -23,7 +23,7 @@ const grid = (props, gridFields) => (
   </Datagrid>
 );
 
-const createResource = (name, formFields, gridFields) => ({
+const createResource = ({ name, formFields, gridFields }) => ({
   name: name,
   edit: (props) => <Edit {...props}>{form(props, formFields)}</Edit>,
   create: (props) => <Create {...props}>{form(props, formFields)}</Create>,

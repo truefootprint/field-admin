@@ -35,7 +35,6 @@ const dataProvider = withFileUpload(jsonServerProvider(HOST));
 
 const App = () => (
   <Admin dataProvider={dataProvider}>
-    <Resource {...questions} />
     <Resource {...activities} />
     <Resource {...completion_questions} />
     <Resource {...default_activities} />

@@ -1,40 +1,27 @@
 import React from "react";
-import { Create, Datagrid, DateField, DisabledInput, Edit, List, SimpleForm, TextField } from "react-admin";
-import { NumberInput, ReferenceInput, SelectInput, TextInput } from "react-admin";
+import { TextInput, TextField, ReferenceInput, SelectInput, NumberInput, NumberField, ReferenceField } from "react-admin";
+import createResource from "../extensions/create_resource";
 
-const form = ({ location }) => {
-  const newRecord = location.pathname.match(/create/);
-
-  return (
-    <SimpleForm>
-      {newRecord ? null : <DisabledInput source="id" />}
-
-      {newRecord ? null : <DisabledInput source="created_at" />}
-
-      {newRecord ? null : <DisabledInput source="updated_at" />}
-
-      <ReferenceInput source="question_id" reference="questions" filter={{ type: "MultiChoiceQuestion" }}>
-        <SelectInput optionText="text" />
-      </ReferenceInput>
-
-      <TextInput source="text" />
-
-      <NumberInput source="order" />
-    </SimpleForm>
-  );
-};
-
-export default {
+export default createResource({
   name: "multi_choice_options",
-  edit: (props) => <Edit {...props}>{form(props)}</Edit>,
-  create: (props) => <Create {...props}>{form(props)}</Create>,
-  list: (props) => (
-    <List {...props}>
-      <Datagrid rowClick="edit">
-        <TextField source="id" />
-        <DateField source="created_at" />
-        <DateField source="updated_at" />
-      </Datagrid>
-    </List>
-  ),
-};
+
+  formFields: (props) => [
+    <ReferenceInput source="question_id" reference="questions" filter={{ type: "MultiChoiceQuestion" }}>
+      <SelectInput optionText="text" />
+    </ReferenceInput>,
+
+    <TextInput source="text" />,
+
+    <NumberInput source="order" />,
+  ],
+
+  gridFields: (props) => [
+    <ReferenceField source="question_id" reference="questions">
+      <TextField source="text" />
+    </ReferenceField>,
+
+    <TextField source="text" />,
+
+    <NumberField source="order" />,
+  ],
+});
