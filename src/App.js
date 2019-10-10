@@ -1,6 +1,8 @@
 import React from "react";
 import { Admin, Resource } from "react-admin";
 import jsonServerProvider from "ra-data-json-server";
+import authProvider from "./extensions/auth_provider";
+import httpClient from "./extensions/http_client";
 import withFileUpload from "./extensions/with_file_upload";
 import { HOST } from "./consts";
 
@@ -31,10 +33,10 @@ import user_roles from "./resources/user_roles";
 import users from "./resources/users";
 import visibilities from "./resources/visibilities";
 
-const dataProvider = withFileUpload(jsonServerProvider(HOST));
+const dataProvider = withFileUpload(jsonServerProvider(HOST, httpClient));
 
 const App = () => (
-  <Admin dataProvider={dataProvider}>
+  <Admin dataProvider={dataProvider} authProvider={authProvider}>
     <Resource {...activities} />
     <Resource {...completion_questions} />
     <Resource {...default_activities} />

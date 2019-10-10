@@ -8,7 +8,12 @@ const withFileUpload = requestHandler => (type, resource, params) => {
         form.set("file", rawFile);
         form.set("name", rawFile.name);
 
-        return fetch(`${HOST}/${resource}`, { method: "POST", body: form })
+        const token = localStorage.getItem("token");
+        const headers = new Headers();
+
+        headers.append("Authorization", `Basic ${token}`);
+
+        return fetch(`${HOST}/${resource}`, { method: "POST", body: form, headers: headers })
           .then((response) => response.json())
           .then((json) => ( { data: { id: json.id }} ))
     }
