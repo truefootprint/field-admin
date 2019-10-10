@@ -6,11 +6,11 @@ export default createResource({
   name: "user_roles",
 
   formFields: (props) => [
-    <ReferenceInput source="user_id" reference="users">
+    <ReferenceInput source="user_id" reference="users" perPage={100}>
       <SelectInput optionText="name" />
     </ReferenceInput>,
 
-    <ReferenceInput source="role_id" reference="roles">
+    <ReferenceInput source="role_id" reference="roles" perPage={100}>
       <SelectInput optionText="name" />
     </ReferenceInput>,
   ],

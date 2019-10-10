@@ -6,7 +6,7 @@ export default createResource({
   name: "multi_choice_options",
 
   formFields: (props) => [
-    <ReferenceInput source="question_id" reference="questions" filter={{ type: "MultiChoiceQuestion" }}>
+    <ReferenceInput source="question_id" reference="questions" filter={{ type: "MultiChoiceQuestion" }} perPage={100}>
       <SelectInput optionText="text" />
     </ReferenceInput>,
 

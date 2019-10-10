@@ -6,7 +6,7 @@ export default createResource({
   name: "default_expected_values",
 
   formFields: (props) => [
-    <ReferenceInput source="topic_id" reference="topics">
+    <ReferenceInput source="topic_id" reference="topics" perPage={100}>
       <SelectInput optionText="name" />
     </ReferenceInput>,
 
@@ -16,7 +16,7 @@ export default createResource({
       </ReferenceInput>
     }</FormDataConsumer>,
 
-    <ReferenceInput source="activity_id" reference="activities" allowEmpty>
+    <ReferenceInput source="activity_id" reference="activities" allowEmpty perPage={100}>
       <SelectInput optionText="name" />
     </ReferenceInput>,
 

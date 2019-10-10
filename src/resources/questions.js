@@ -10,11 +10,11 @@ export default createResource({
   formFields: (props) => [
     <TextInput source="text" />,
 
-    <ReferenceInput source="topic_id" reference="topics">
+    <ReferenceInput source="topic_id" reference="topics" perPage={100}>
       <SelectInput />
     </ReferenceInput>,
 
-    <ReferenceInput source="type" reference="question_types">
+    <ReferenceInput source="type" reference="question_types" perPage={100}>
       <RadioButtonGroupInput optionText="id" />
     </ReferenceInput>,
 
@@ -26,7 +26,7 @@ export default createResource({
       <BooleanInput source="multiple_answers" />
     </Conditional>,
 
-    <ReferenceInput source="data_type" reference="question_data_types">
+    <ReferenceInput source="data_type" reference="question_data_types" perPage={100}>
       <RadioButtonGroupInput optionText="id" />
     </ReferenceInput>,
   ],

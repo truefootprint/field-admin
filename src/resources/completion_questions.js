@@ -6,7 +6,7 @@ export default createResource({
   name: "completion_questions",
 
   formFields: (props) => [
-    <ReferenceInput source="topic_id" reference="topics">
+    <ReferenceInput source="topic_id" reference="topics" perPage={100}>
       <SelectInput optionText="name" />
     </ReferenceInput>,
 

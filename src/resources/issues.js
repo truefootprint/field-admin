@@ -7,13 +7,13 @@ export default createResource({
   name: "issues",
 
   formFields: (props) => [
-    <ReferenceInput source="subject_type" reference="issue_subject_types">
+    <ReferenceInput source="subject_type" reference="issue_subject_types" perPage={100}>
       <RadioButtonGroupInput optionText="id" />
     </ReferenceInput>,
 
     <NumberInput label="Subject id" source="subject_id" />,
 
-    <ReferenceInput source="user_id" reference="users">
+    <ReferenceInput source="user_id" reference="users" perPage={100}>
       <SelectInput optionText="name" />
     </ReferenceInput>,
 

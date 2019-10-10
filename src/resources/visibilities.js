@@ -6,13 +6,13 @@ export default createResource({
   name: "visibilities",
 
   formFields: (props) => [
-    <ReferenceInput source="subject_type" reference="visibility_subject_types">
+    <ReferenceInput source="subject_type" reference="visibility_subject_types" perPage={100}>
       <SelectInput optionText="id" />
     </ReferenceInput>,
 
     <NumberInput label="Subject id" source="subject_id" />,
 
-    <ReferenceInput source="visible_to_type" reference="visibility_visible_to_types">
+    <ReferenceInput source="visible_to_type" reference="visibility_visible_to_types" perPage={100}>
       <RadioButtonGroupInput optionText="id" />
     </ReferenceInput>,
 
