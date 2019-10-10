@@ -1,6 +1,8 @@
 import React from "react";
 import { Admin, Resource } from "react-admin";
 import jsonServerProvider from "ra-data-json-server";
+import withFileUpload from "./extensions/with_file_upload";
+import { HOST } from "./consts";
 
 import questions from "./resources/questions";
 import activities from "./resources/activities";
@@ -29,7 +31,7 @@ import user_roles from "./resources/user_roles";
 import users from "./resources/users";
 import visibilities from "./resources/visibilities";
 
-const dataProvider = jsonServerProvider("http://localhost:3000");
+const dataProvider = withFileUpload(jsonServerProvider(HOST));
 
 const App = () => (
   <Admin dataProvider={dataProvider}>
