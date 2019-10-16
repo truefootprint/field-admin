@@ -1,8 +1,9 @@
 import React from "react";
 import { TextInput, ReferenceInput, SelectInput, RadioButtonGroupInput, NumberInput, BooleanInput } from "react-admin";
-import { TextField, ReferenceField, NumberField, BooleanField, FormDataConsumer } from "react-admin";
+import { TextField, ReferenceField, NumberField, BooleanField } from "react-admin";
 import Conditional from "../components/conditional";
 import createResource from "../extensions/create_resource";
+import UnitInput from "../components/unit_input";
 
 export default createResource({
   name: "questions",
@@ -30,15 +31,8 @@ export default createResource({
       <RadioButtonGroupInput optionText="id" />
     </ReferenceInput>,
 
-    <ReferenceInput source="unit_type" reference="unit_types" allowEmpty>
-      <SelectInput optionText="id" />
-    </ReferenceInput>,
-
-    <FormDataConsumer>{f => f && f.formData &&
-      <ReferenceInput source="unit_id" reference="units" perPage={100} filter={{ type: f.formData.unit_type }} allowEmpty>
-        <SelectInput />
-      </ReferenceInput>
-    }</FormDataConsumer>,
+    <UnitInput.TypeSelector />,
+    <UnitInput.UnitSelector />,
   ],
 
   gridFields: (props) => [

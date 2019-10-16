@@ -2,6 +2,8 @@ import React from "react";
 import { ReferenceInput, ReferenceField, SelectInput, TextField, TextInput, FormDataConsumer } from "react-admin";
 import createResource from "../extensions/create_resource";
 
+import UnitInput from "../components/unit_input";
+
 export default createResource({
   name: "default_expected_values",
 
@@ -22,15 +24,8 @@ export default createResource({
 
     <TextInput source="value" />,
 
-    <ReferenceInput source="unit_type" reference="unit_types" allowEmpty>
-      <SelectInput optionText="id" />
-    </ReferenceInput>,
-
-    <FormDataConsumer>{f => f && f.formData &&
-      <ReferenceInput source="unit_id" reference="units" perPage={100} filter={{ type: f.formData.unit_type }} allowEmpty>
-        <SelectInput />
-      </ReferenceInput>
-    }</FormDataConsumer>,
+    <UnitInput.TypeSelector />,
+    <UnitInput.UnitSelector />,
   ],
 
   gridFields: (props) => [
