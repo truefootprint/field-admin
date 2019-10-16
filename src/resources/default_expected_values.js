@@ -33,11 +33,11 @@ export default createResource({
 
     <TextField source="value" />,
 
-    <ReferenceField label="Unit type" source="unit_id" reference="units" linkType={false}>
+    <ReferenceField label="Unit type" source="unit_id" reference="units" linkType={false} allowEmpty >
       <TextField source="type" />
     </ReferenceField>,
 
-    <ReferenceField source="unit_id" reference="units">
+    <ReferenceField source="unit_id" reference="units" allowEmpty >
       <TextField source="name" />
     </ReferenceField>,
   ],
