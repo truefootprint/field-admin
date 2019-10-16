@@ -1,20 +1,14 @@
 import React from "react";
-import { ReferenceInput, ReferenceField, SelectInput, FormDataConsumer, TextInput, TextField } from "react-admin";
+import { ReferenceField, TextInput, TextField } from "react-admin";
 import createResource from "../extensions/create_resource";
+import QuestionInput from "../components/question_input";
 
 export default createResource({
   name: "completion_questions",
 
   formFields: (props) => [
-    <ReferenceInput source="topic_id" reference="topics" perPage={100}>
-      <SelectInput optionText="name" />
-    </ReferenceInput>,
-
-    <FormDataConsumer>{f => f && f.formData &&
-      <ReferenceInput source="question_id" reference="questions" perPage={100} filter={{ topic_id: f.formData.topic_id }}>
-        <SelectInput optionText="text" />
-      </ReferenceInput>
-    }</FormDataConsumer>,
+    <QuestionInput.TopicSelector />,
+    <QuestionInput.QuestionSelector />,
 
     <TextInput source="completion_value" />,
   ],

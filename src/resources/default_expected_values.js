@@ -1,22 +1,16 @@
 import React from "react";
-import { ReferenceInput, ReferenceField, SelectInput, TextField, TextInput, FormDataConsumer } from "react-admin";
+import { ReferenceInput, ReferenceField, SelectInput, TextField, TextInput } from "react-admin";
 import createResource from "../extensions/create_resource";
 
+import QuestionInput from "../components/question_input";
 import UnitInput from "../components/unit_input";
 
 export default createResource({
   name: "default_expected_values",
 
   formFields: (props) => [
-    <ReferenceInput source="topic_id" reference="topics" perPage={100}>
-      <SelectInput optionText="name" />
-    </ReferenceInput>,
-
-    <FormDataConsumer>{f => f && f.formData &&
-      <ReferenceInput source="question_id" reference="questions" perPage={100} filter={{ topic_id: f.formData.topic_id }}>
-        <SelectInput optionText="text" />
-      </ReferenceInput>
-    }</FormDataConsumer>,
+    <QuestionInput.TopicSelector />,
+    <QuestionInput.QuestionSelector />,
 
     <ReferenceInput source="activity_id" reference="activities" allowEmpty perPage={100}>
       <SelectInput optionText="name" />

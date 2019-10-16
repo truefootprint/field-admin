@@ -1,6 +1,7 @@
 import React from "react";
-import { ReferenceInput, ReferenceField, SelectInput, NumberInput, NumberField, FormDataConsumer, TextField } from "react-admin";
+import { ReferenceInput, ReferenceField, SelectInput, NumberInput, NumberField, TextField } from "react-admin";
 import createResource from "../extensions/create_resource";
+import QuestionInput from "../components/question_input";
 
 export default createResource({
   name: "default_questions",
@@ -10,15 +11,8 @@ export default createResource({
       <SelectInput optionText="name" />
     </ReferenceInput>,
 
-    <ReferenceInput source="topic_id" reference="topics" perPage={100}>
-      <SelectInput optionText="name" />
-    </ReferenceInput>,
-
-    <FormDataConsumer>{f => f && f.formData &&
-      <ReferenceInput source="question_id" reference="questions" perPage={100} filter={{ topic_id: f.formData.topic_id }}>
-        <SelectInput optionText="text" />
-      </ReferenceInput>
-    }</FormDataConsumer>,
+    <QuestionInput.TopicSelector />,
+    <QuestionInput.QuestionSelector />,
 
     <NumberInput source="order" />,
   ],
