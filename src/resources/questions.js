@@ -1,6 +1,6 @@
 import React from "react";
 import { TextInput, ReferenceInput, SelectInput, RadioButtonGroupInput, NumberInput, BooleanInput } from "react-admin";
-import { TextField, ReferenceField, NumberField, BooleanField } from "react-admin";
+import { TextField, ReferenceField, NumberField, BooleanField, FormDataConsumer } from "react-admin";
 import Conditional from "../components/conditional";
 import createResource from "../extensions/create_resource";
 
@@ -29,6 +29,16 @@ export default createResource({
     <ReferenceInput source="data_type" reference="question_data_types" perPage={100}>
       <RadioButtonGroupInput optionText="id" />
     </ReferenceInput>,
+
+    <ReferenceInput source="unit_type" reference="unit_types" allowEmpty>
+      <SelectInput optionText="id" />
+    </ReferenceInput>,
+
+    <FormDataConsumer>{f => f && f.formData &&
+      <ReferenceInput source="unit_id" reference="units" perPage={100} filter={{ type: f.formData.unit_type }} allowEmpty>
+        <SelectInput />
+      </ReferenceInput>
+    }</FormDataConsumer>,
   ],
 
   gridFields: (props) => [
@@ -42,5 +52,13 @@ export default createResource({
     <NumberField source="expected_length" />,
     <BooleanField source="multiple_answers" />,
     <TextField source="data_type" />,
+
+    <ReferenceField label="Unit type" source="unit_id" reference="units" linkType={false}>
+      <TextField source="type" />
+    </ReferenceField>,
+
+    <ReferenceField source="unit_id" reference="units">
+      <TextField source="name" />
+    </ReferenceField>,
   ],
 });

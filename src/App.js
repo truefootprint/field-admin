@@ -29,6 +29,7 @@ import responses from "./resources/responses";
 import roles from "./resources/roles";
 import source_materials from "./resources/source_materials";
 import topics from "./resources/topics";
+import units from "./resources/units";
 import user_roles from "./resources/user_roles";
 import users from "./resources/users";
 import visibilities from "./resources/visibilities";
@@ -60,6 +61,7 @@ const App = () => (
     <Resource {...roles} />
     <Resource {...source_materials} />
     <Resource {...topics} />
+    <Resource {...units} />
     <Resource {...user_roles} />
     <Resource {...users} />
     <Resource {...visibilities} />
@@ -70,6 +72,7 @@ const App = () => (
     <Resource name="source_material_subject_types" />
     <Resource name="visibility_subject_types" />
     <Resource name="visibility_visible_to_types" />
+    <Resource name="unit_types" />
   </Admin>
 );
 
