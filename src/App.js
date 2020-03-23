@@ -24,7 +24,6 @@ import project_questions from "./resources/project_questions";
 import project_summaries from "./resources/project_summaries";
 import project_types from "./resources/project_types";
 import projects from "./resources/projects";
-import resolutions from "./resources/resolutions";
 import responses from "./resources/responses";
 import roles from "./resources/roles";
 import source_materials from "./resources/source_materials";
@@ -56,7 +55,6 @@ const App = () => (
     <Resource {...project_types} />
     <Resource {...projects} />
     <Resource {...questions} />
-    <Resource {...resolutions} />
     <Resource {...responses} />
     <Resource {...roles} />
     <Resource {...source_materials} />
