@@ -16,6 +16,7 @@ import documents from "./resources/documents";
 import expected_values from "./resources/expected_values";
 import follow_up_activities from "./resources/follow_up_activities";
 import involvements from "./resources/involvements";
+import issue_notes from "./resources/issue_notes";
 import issues from "./resources/issues";
 import multi_choice_options from "./resources/multi_choice_options";
 import programmes from "./resources/programmes";
@@ -46,6 +47,7 @@ const App = () => (
     <Resource {...expected_values} />
     <Resource {...follow_up_activities} />
     <Resource {...involvements} />
+    <Resource {...issue_notes} />
     <Resource {...issues} />
     <Resource {...multi_choice_options} />
     <Resource {...programmes} />
