@@ -3,11 +3,12 @@ import { SimpleForm, TextField, DateField, Datagrid, Edit, Create, List, Filter,
 
 const form = (props, formFields, showLocale) => {
   const newRecord = props.location.pathname.match(/create/);
+  const locale = () => localStorage.getItem("locale") || "en";
 
   return (
     <SimpleForm>
       {newRecord ? null : <TextField source="id" />}
-      {showLocale ? <TextInput source="locale" defaultValue="en"  /> : null}
+      {showLocale ? <TextInput source="locale" defaultValue={locale} /> : null}
       {formFields(props)}
       {newRecord ? null : <TextField source="created_at" />}
       {newRecord ? null : <TextField source="updated_at" />}
