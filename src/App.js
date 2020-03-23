@@ -30,6 +30,7 @@ import roles from "./resources/roles";
 import source_materials from "./resources/source_materials";
 import topics from "./resources/topics";
 import units from "./resources/units";
+import user_interface_text from "./resources/user_interface_text";
 import user_roles from "./resources/user_roles";
 import users from "./resources/users";
 import visibilities from "./resources/visibilities";
@@ -62,6 +63,7 @@ const App = () => (
     <Resource {...source_materials} />
     <Resource {...topics} />
     <Resource {...units} />
+    <Resource {...user_interface_text} />
     <Resource {...user_roles} />
     <Resource {...users} />
     <Resource {...visibilities} />
