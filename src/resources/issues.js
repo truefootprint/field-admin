@@ -18,11 +18,10 @@ export default createResource({
     </ReferenceInput>,
 
     <LongTextInput source="description" />,
-
-    <BooleanInput source="critical" />,
   ],
 
   gridFields: (props) => [
+    <TextField source="uuid" />,
     <TextField source="subject_type" />,
     <NumberField label="Subject id" source="subject_id" />,
 
@@ -31,6 +30,5 @@ export default createResource({
     </ReferenceField>,
 
     <TextField source="description" />,
-    <BooleanField source="critical" />,
   ],
 });
