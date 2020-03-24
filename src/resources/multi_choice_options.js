@@ -4,6 +4,7 @@ import createResource from "../extensions/create_resource";
 
 export default createResource({
   name: "multi_choice_options",
+  showLocale: true,
 
   formFields: (props) => [
     <ReferenceInput source="question_id" reference="questions" filter={{ type: "MultiChoiceQuestion" }} perPage={100}>

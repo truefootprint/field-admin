@@ -6,6 +6,7 @@ import UnitInput from "../components/unit_input";
 
 export default createResource({
   name: "expected_values",
+  showLocale: true,
 
   formFields: (props) => [
     <NumberInput label="Project question id" source="project_question_id" />,

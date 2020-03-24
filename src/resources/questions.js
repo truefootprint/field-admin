@@ -7,6 +7,7 @@ import UnitInput from "../components/unit_input";
 
 export default createResource({
   name: "questions",
+  showLocale: true,
 
   formFields: (props) => [
     <TextInput source="text" />,

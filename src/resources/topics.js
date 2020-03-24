@@ -4,6 +4,7 @@ import createResource from "../extensions/create_resource";
 
 export default createResource({
   name: "topics",
+  showLocale: true,
 
   formFields: (props) => [
     <TextInput source="name" />,

@@ -7,6 +7,7 @@ import UnitInput from "../components/unit_input";
 
 export default createResource({
   name: "default_expected_values",
+  showLocale: true,
 
   formFields: (props) => [
     <QuestionInput.TopicSelector />,

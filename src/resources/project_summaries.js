@@ -4,6 +4,7 @@ import createResource from "../extensions/create_resource";
 
 export default createResource({
   name: "project_summaries",
+  showLocale: true,
 
   formFields: (props) => [
     <ReferenceInput source="project_id" reference="projects" perPage={100}>

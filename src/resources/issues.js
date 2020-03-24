@@ -1,6 +1,6 @@
 import React from "react";
-import { BooleanInput, NumberInput, LongTextInput, ReferenceInput, SelectInput, RadioButtonGroupInput } from "react-admin";
-import { BooleanField, NumberField, TextField, ReferenceField } from "react-admin";
+import { NumberInput, LongTextInput, ReferenceInput, SelectInput, RadioButtonGroupInput } from "react-admin";
+import { NumberField, TextField, ReferenceField } from "react-admin";
 import createResource from "../extensions/create_resource";
 
 export default createResource({
