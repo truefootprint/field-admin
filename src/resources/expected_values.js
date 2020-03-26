@@ -12,6 +12,7 @@ export default createResource({
     <NumberInput label="Project question id" source="project_question_id" />,
 
     <TextInput source="value" />,
+    <TextInput source="text" />,
 
     <UnitInput.TypeSelector />,
     <UnitInput.UnitSelector />,
@@ -29,13 +30,14 @@ export default createResource({
     </ReferenceField>,
 
     <TextField source="value" />,
+    <TextField source="text" />,
 
-    <ReferenceField label="Unit type" source="unit_id" reference="units" linkType={false} allowEmpty >
+    <ReferenceField label="Unit type" source="unit_id" reference="units" linkType={false} allowEmpty>
       <TextField source="type" />
     </ReferenceField>,
 
-    <ReferenceField source="unit_id" reference="units" allowEmpty >
-      <TextField source="name" />
+    <ReferenceField source="unit_id" reference="units" allowEmpty>
+      <TextField source="official_name" />
     </ReferenceField>,
   ],
 });

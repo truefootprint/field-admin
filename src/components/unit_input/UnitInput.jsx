@@ -12,7 +12,7 @@ UnitInput.TypeSelector = () => (
 UnitInput.UnitSelector = () => (
   <FormDataConsumer>{f => f && f.formData &&
     <ReferenceInput source="unit_id" reference="units" perPage={100} filter={{ type: f.formData.unit_type }} allowEmpty>
-      <SelectInput />
+      <SelectInput optionText="official_name" />
     </ReferenceInput>
   }</FormDataConsumer>
 );

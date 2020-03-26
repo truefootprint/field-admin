@@ -53,7 +53,7 @@ export default createResource({
     </ReferenceField>,
 
     <ReferenceField source="unit_id" reference="units" allowEmpty >
-      <TextField source="name" />
+      <TextField source="official_name" />
     </ReferenceField>,
   ],
 });
