@@ -7,9 +7,13 @@ export default createResource({
 
   formFields: (props) => [
     <TextInput source="name" />,
+    <TextInput source="country_code" />,
+    <TextInput source="phone_number" />,
   ],
 
   gridFields: (props) => [
     <TextField source="name" />,
+    <TextField source="country_code" />,
+    <TextField source="phone_number" />,
   ],
 });
