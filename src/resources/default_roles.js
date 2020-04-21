@@ -1,27 +1,31 @@
 import React from "react";
-import { TextField, ReferenceInput, ReferenceField, SelectInput } from "react-admin";
+import { TextField, ReferenceInput, ReferenceField, SelectInput, NumberInput, NumberField } from "react-admin";
 import createResource from "../extensions/create_resource";
 
 export default createResource({
-  name: "user_roles",
+  name: "default_roles",
 
   formFields: (props) => [
-    <ReferenceInput source="user_id" reference="users" perPage={100}>
+    <ReferenceInput source="project_type_id" reference="project_types" perPage={100}>
       <SelectInput optionText="name" />
     </ReferenceInput>,
 
     <ReferenceInput source="role_id" reference="roles" perPage={100}>
       <SelectInput optionText="name" />
     </ReferenceInput>,
+
+    <NumberInput source="order" />,
   ],
 
   gridFields: (props) => [
-    <ReferenceField source="user_id" reference="users">
+    <ReferenceField source="project_type_id" reference="project_types">
       <TextField source="name" />
     </ReferenceField>,
 
     <ReferenceField source="role_id" reference="roles">
       <TextField source="name" />
     </ReferenceField>,
+
+    <NumberField source="order" />
   ],
 });

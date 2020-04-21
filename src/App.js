@@ -13,6 +13,8 @@ import completion_questions from "./resources/completion_questions";
 import default_activities from "./resources/default_activities";
 import default_expected_values from "./resources/default_expected_values";
 import default_questions from "./resources/default_questions";
+import default_visibilities from "./resources/default_visibilities";
+import default_roles from "./resources/default_roles";
 import documents from "./resources/documents";
 import expected_values from "./resources/expected_values";
 import follow_up_activities from "./resources/follow_up_activities";
@@ -20,19 +22,20 @@ import involvements from "./resources/involvements";
 import issue_notes from "./resources/issue_notes";
 import issues from "./resources/issues";
 import multi_choice_options from "./resources/multi_choice_options";
+import personalised_text from "./resources/personalised_text";
 import programmes from "./resources/programmes";
 import project_activities from "./resources/project_activities";
 import project_questions from "./resources/project_questions";
-import project_summaries from "./resources/project_summaries";
+import project_roles from "./resources/project_roles";
 import project_types from "./resources/project_types";
 import projects from "./resources/projects";
+import registrations from "./resources/registrations";
 import responses from "./resources/responses";
 import roles from "./resources/roles";
 import source_materials from "./resources/source_materials";
 import topics from "./resources/topics";
 import units from "./resources/units";
 import user_interface_text from "./resources/user_interface_text";
-import user_roles from "./resources/user_roles";
 import users from "./resources/users";
 import visibilities from "./resources/visibilities";
 
@@ -45,6 +48,8 @@ const App = () => (
     <Resource {...default_activities} />
     <Resource {...default_expected_values} />
     <Resource {...default_questions} />
+    <Resource {...default_roles} />
+    <Resource {...default_visibilities} />
     <Resource {...documents} />
     <Resource {...expected_values} />
     <Resource {...follow_up_activities} />
@@ -52,23 +57,25 @@ const App = () => (
     <Resource {...issue_notes} />
     <Resource {...issues} />
     <Resource {...multi_choice_options} />
+    <Resource {...personalised_text} />
     <Resource {...programmes} />
     <Resource {...project_activities} />
     <Resource {...project_questions} />
-    <Resource {...project_summaries} />
+    <Resource {...project_roles} />
     <Resource {...project_types} />
     <Resource {...projects} />
     <Resource {...questions} />
+    <Resource {...registrations} />
     <Resource {...responses} />
     <Resource {...roles} />
     <Resource {...source_materials} />
     <Resource {...topics} />
     <Resource {...units} />
     <Resource {...user_interface_text} />
-    <Resource {...user_roles} />
     <Resource {...users} />
     <Resource {...visibilities} />
 
+    <Resource name="default_visibility_subject_types" />
     <Resource name="question_types" />
     <Resource name="question_data_types" />
     <Resource name="issue_subject_types" />
