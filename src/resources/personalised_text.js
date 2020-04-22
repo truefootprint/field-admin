@@ -12,7 +12,7 @@ export default createResource({
     </ReferenceInput>,
 
     <TextInput source="project_role_id" />,
-    <TextInput source="value" />,
+    <TextInput source="value" multiline />,
   ],
 
   gridFields: (props) => [

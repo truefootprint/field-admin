@@ -8,7 +8,7 @@ export default createResource({
 
   formFields: (props) => [
     <TextInput source="key" />,
-    <TextInput source="value" />,
+    <TextInput source="value" multiline />,
   ],
 
   gridFields: (props) => [
