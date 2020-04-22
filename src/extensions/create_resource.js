@@ -36,7 +36,7 @@ const createResource = ({ name, formFields, gridFields, showLocale }) => ({
   edit: (props) => <Edit {...props}>{form(props, formFields, showLocale)}</Edit>,
   create: (props) => <Create {...props}>{form(props, formFields, showLocale)}</Create>,
   list: (props) => (
-    <List {...props} filters={filters(showLocale)} filterDefaultValues={{ locale: "en" }}>
+    <List {...props} perPage={100} filters={filters(showLocale)} filterDefaultValues={{ locale: "en" }}>
       {grid(props, gridFields)}
     </List>
   ),
