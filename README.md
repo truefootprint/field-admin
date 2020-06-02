@@ -1,68 +1,79 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## FieldAdmin
 
-## Available Scripts
+This repository contains a [ReactAdmin](https://marmelab.com/react-admin/) app
+that can be used to administer data in
+[FieldApp](https://github.com/truefootprint/field-app). This includes adding
+projects, questions, users, translations, etc. The app is hosted on GitHub pages
+and performs all its operations by making CRUD requests to
+[FieldBackend](https://github.com/truefootprint/field-backend). These are
+handled by
+[CrudController](https://github.com/truefootprint/field-backend/blob/master/app/controllers/crud_controller.rb) and
+some [generated routes](https://github.com/truefootprint/field-backend/blob/master/config/routes.rb).
 
-In the project directory, you can run:
+### How to run
 
-### `yarn start`
+```sh
+$ yarn
+$ make server
+```
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+By default, the app will speak to localhost:3000 but you can change this in
+`src/consts.js`.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### How to deploy
 
-### `yarn test`
+To deploy to GitHub pages run the following:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+$ make deploy
+```
 
-### `yarn build`
+The app is hosted at [field-admin.truefootprint.com](https://field-admin.truefootprint.com/).
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### How to login
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+The app forwards the basic auth password to the backend API. The password must
+be the API token of an admin user. Currently, all admins have full access to
+all projects but we might want to change that in the future.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To get the admin token, run this:
 
-### `yarn eject`
+```sh
+$ cd field-backend
+$ bundle exec rails c
+$ ApiToken.find_by!(name: "admin").token
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The username can be set to anything. It is a required field but its content is
+ignored.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Code layout
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Most of the code lives in `src/resources`. There is a file per model to be
+managed. These all use a `createResource` helper that sets up the pages in a
+standard format and can optionally add a locale filter to the page.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The `src/extensions` directory contains supporting code such as
+`auth_provider.js` that handles the API token. Once logged in, we store this in
+the browser's localStorage which is something to be wary of.
 
-## Learn More
+Locales are sent to the backend as a query parameter. This is read by
+field-backend and set as `I18n.locale`. This works well with the mobility gem
+that we are using in the project to filter records by that locale.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+It also means records can be created in a given locale by updating dating when
+the locale is set to the one you want. The user-interface is a little
+counter-intuitive for this but you can first set the locale to the one you want
+then update the record in question with the translated content.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Some of the resources in this app use components that are not ones built into
+ReactAdmin. They are in `src/components`. These are used for convenience where
+the same resources are used multiple times throughout the app, e.g. Units.
 
-### Code Splitting
+### Future plans
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This application is really a stop-gap to allow us to administer projects during
+the early stages of TrueFootprint when we only have one or two clients. Once
+this grows, we'll need a more suitable admin system that better represents the
+concepts from our
+[domain model](https://github.com/truefootprint/field-backend/blob/master/doc/domain_model.md).
