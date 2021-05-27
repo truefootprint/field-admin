@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageField, ImageInput, TextInput, TextField, ReferenceInput, SelectInput, NumberInput, NumberField, ReferenceField } from "react-admin";
+import { required, ImageField, ImageInput, TextInput, TextField, ReferenceInput, SelectInput, NumberInput, NumberField, ReferenceField } from "react-admin";
 import createResource from "../extensions/create_resource";
 
 
@@ -14,7 +14,7 @@ export default createResource({
       <SelectInput optionText="text" />
     </ReferenceInput>,
 
-    <TextInput source="text" />,
+    <TextInput source="text" validate={[required()]} />,
 
     <NumberInput source="order" />,
     <ImageField source="photo" title="title" />,
