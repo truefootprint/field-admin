@@ -20,6 +20,8 @@ export default createResource({
       <RadioButtonGroupInput optionText="id" />
     </ReferenceInput>,
 
+    <BooleanInput label="Isssues Possible" source="issues_possible" />,
+
     <Conditional when={d => d.type === "FreeTextQuestion"}>
       <NumberInput source="expected_length" />
     </Conditional>,
