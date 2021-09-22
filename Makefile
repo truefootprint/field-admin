@@ -15,6 +15,6 @@ deploy:
 		git add -A                                                            && \
 		git commit -m 'Deploy changes'                                        && \
 		git remote add origin git@github.com:truefootprint/field-admin        && \
-		git push -f origin head:gh-pages                                      && \
+		git push -f origin master:gh-pages                                      && \
 		cd ..                                                                 && \
 		rm -rf build
