@@ -5,12 +5,14 @@ import { v4 as uuidv4 } from 'uuid';
     
     if ((type === "CREATE" || type === "UPDATE") && typeof params.data.photo !== "undefined") {
         let form = new FormData();
-
+        console.log("RESOURCE");
+        console.log(params);
         if (params.data.photo.rawFile !== undefined){
           let rawFile = params.data.photo.rawFile;        
-          form.set("photo", rawFile); 
-          form.set("name", rawFile.name);
+          form.set("photo", rawFile);          
         }
+
+        form.set("name", params.data.name); 
         form.set("order", params.data.order);
         form.set("question_id", params.data.question_id);
         form.set("text", params.data.text);

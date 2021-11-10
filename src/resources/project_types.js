@@ -1,5 +1,5 @@
 import React from "react";
-import { TextInput, TextField } from "react-admin";
+import { ImageInput, ImageField, TextInput, TextField } from "react-admin";
 import createResource from "../extensions/create_resource";
 
 export default createResource({
@@ -7,6 +7,10 @@ export default createResource({
 
   formFields: (props) => [
     <TextInput source="name" />,
+    <ImageField source="photo" title="title" />,
+    <ImageInput source="photo" label="Banner Image" accept="image/*">
+      <ImageField source="photo" title="title" />
+    </ImageInput>,
   ],
 
   gridFields: (props) => [

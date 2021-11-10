@@ -1,5 +1,13 @@
 import React from "react";
-import { TextInput, TextField, ReferenceInput, SelectInput, ReferenceField } from "react-admin";
+import {
+  ImageInput,
+  ImageField,
+  TextInput,
+  TextField,
+  ReferenceInput,
+  SelectInput,
+  ReferenceField,
+} from "react-admin";
 import createResource from "../extensions/create_resource";
 
 export default createResource({
@@ -11,16 +19,24 @@ export default createResource({
       <SelectInput optionText="name" />
     </ReferenceInput>,
 
-    <ReferenceInput source="project_type_id" reference="project_types" perPage={100}>
+    <ReferenceInput
+      source="project_type_id"
+      reference="project_types"
+      perPage={100}
+    >
       <SelectInput optionText="name" />
     </ReferenceInput>,
 
     <TextInput source="name" />,
+    <ImageField source="photo" title="title" />,
+    <ImageInput source="photo" label="Banner Image" accept="image/*">
+      <ImageField source="photo" title="title" />
+    </ImageInput>,
   ],
 
   gridFields: (props) => [
     <ReferenceField source="programme_id" reference="programmes">
-      <TextField source="name" />
+      <TextField source="nattme" />
     </ReferenceField>,
 
     <ReferenceField source="project_type_id" reference="project_types">
