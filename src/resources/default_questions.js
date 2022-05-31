@@ -1,5 +1,5 @@
 import React from "react";
-import { ReferenceInput, ReferenceField, SelectInput, NumberInput, NumberField, TextField } from "react-admin";
+import { TextInput, ReferenceInput, ReferenceField, SelectInput, NumberInput, NumberField, TextField } from "react-admin";
 import createResource from "../extensions/create_resource";
 import QuestionInput from "../components/question_input";
 
@@ -15,6 +15,9 @@ export default createResource({
     <QuestionInput.QuestionSelector />,
 
     <NumberInput source="order" />,
+
+    <NumberInput label="Parent Question id" source="parent_question_id" />,
+    <TextInput label="Question response trigger" source="child_response_trigger" />,
   ],
 
   gridFields: (props) => [
