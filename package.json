@@ -4,11 +4,13 @@
   "private": true,
   "dependencies": {
     "prop-types": "^15.7.2",
-    "ra-data-json-server": "^2.9.7",
+    "ra-data-json-server": "4.6.0",
     "react": "^16.10.2",
-    "react-admin": "^2.9.7",
+    "react-admin": "4.6",
+    "react-admin-import-csv": "^4.0.0",
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0",
+    "use-file-picker": "^1.5.1",
     "uuid": "^8.3.2"
   },
   "scripts": {

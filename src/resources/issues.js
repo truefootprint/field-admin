@@ -1,5 +1,5 @@
 import React from "react";
-import { NumberInput, LongTextInput, ReferenceInput, SelectInput, RadioButtonGroupInput } from "react-admin";
+import { NumberInput, TextInput, ReferenceInput, SelectInput, RadioButtonGroupInput } from "react-admin";
 import { NumberField, TextField, ReferenceField } from "react-admin";
 import createResource from "../extensions/create_resource";
 
@@ -17,7 +17,7 @@ export default createResource({
       <SelectInput optionText="name" />
     </ReferenceInput>,
 
-    <LongTextInput source="description" />,
+    <TextInput source="description" multiline/>,
   ],
 
   gridFields: (props) => [

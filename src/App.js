@@ -5,6 +5,7 @@ import authProvider from "./extensions/auth_provider";
 import httpClient from "./extensions/http_client";
 import withFileUpload from "./extensions/with_file_upload";
 import withLocale from "./extensions/with_locale";
+import myDataProvider from "./extensions/myDataProvider";
 import { HOST } from "./consts";
 
 import questions from "./resources/questions";
@@ -39,10 +40,12 @@ import user_interface_text from "./resources/user_interface_text";
 import users from "./resources/users";
 import visibilities from "./resources/visibilities";
 
-const dataProvider = withLocale(withFileUpload(jsonServerProvider(HOST, httpClient)));
+//withLocale(
+//const dataProvider = withFileUpload(myDataProvider);
+
 
 const App = () => (
-  <Admin dataProvider={dataProvider} authProvider={authProvider}>
+  <Admin dataProvider={myDataProvider} authProvider={authProvider}>
     <Resource {...activities} />
     <Resource {...completion_questions} />
     <Resource {...default_activities} />

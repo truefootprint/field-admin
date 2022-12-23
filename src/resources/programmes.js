@@ -1,5 +1,5 @@
 import React from "react";
-import { TextInput, TextField, LongTextInput } from "react-admin";
+import { TextInput, TextField } from "react-admin";
 import createResource from "../extensions/create_resource";
 
 export default createResource({
@@ -8,7 +8,7 @@ export default createResource({
 
   formFields: (props) => [
     <TextInput source="name" />,
-    <LongTextInput source="description" />,
+    <TextInput source="description" multiline/>,
   ],
 
   gridFields: (props) => [
