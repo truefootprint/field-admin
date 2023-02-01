@@ -9,7 +9,7 @@ export default createResource({
     <ReferenceInput source="user_id" reference="users" perPage={100}>
       <SelectInput optionText="name" />
     </ReferenceInput>,
-
+    <TextInput source="user_id"/>,
     <TextInput source="project_role_id" />,
   ],
 
