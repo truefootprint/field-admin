@@ -7,7 +7,7 @@ export default createResource({
 
   formFields: (props) => [
     <ReferenceInput source="project_id" reference="projects" perPage={100}>
-      <SelectInput />
+      <SelectInput optionText="name" />
     </ReferenceInput>,
 
     <ReferenceInput source="activity_id" reference="activities" perPage={100}>

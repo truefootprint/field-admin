@@ -13,7 +13,7 @@ export default createResource({
     <TextInput source="text" />,
 
     <ReferenceInput source="topic_id" reference="topics" perPage={100}>
-      <SelectInput />
+      <SelectInput optionText="name" />
     </ReferenceInput>,
 
     <ReferenceInput source="type" reference="question_types" perPage={100}>

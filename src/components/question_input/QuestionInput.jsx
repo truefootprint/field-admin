@@ -4,7 +4,7 @@ import { ReferenceInput, SelectInput, FormDataConsumer } from "react-admin";
 const QuestionInput = {};
 
 QuestionInput.TopicSelector = () => (
-  <ReferenceInput source="topic_id" reference="topics">
+  <ReferenceInput source="topic_id" reference="topics" perPage={150} >
     <SelectInput optionText="name" />
   </ReferenceInput>
 );
