@@ -20,14 +20,15 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useFilePicker } from "use-file-picker";
+import { useListContext } from 'react-admin';
 
 const form = (props, formFields, showLocale, newRecord = true) => {
   //const newRecord = props.location.pathname.match(/create/);
-  const locale = localStorage.getItem("locale") || "en";
+  const locale = localStorage.getItem("locale");
   return (
     <SimpleForm>
       {newRecord ? null : <TextField source="id" />}
-      {showLocale ? <TextInput source="locale" defaultValue={locale} /> : null}
+      {showLocale ? <TextInput label="Locale" source="locale" defaultValue={locale} /> : null}
       {formFields(props)}
       {newRecord ? null : <TextField source="created_at" />}
       {newRecord ? null : <TextField source="updated_at" />}
@@ -44,19 +45,22 @@ const grid = (props, gridFields) => (
   </Datagrid>
 );
 
-const filters = (showLocale) => (
-  <Filter>
-    {showLocale && <TextInput label="Locale" source="locale" alwaysOn />}
-  </Filter>
-);
+const filters = (showLocale) => {
 
-const ListActions = (props) => (
-  <TopToolbar>
+  return (<Filter>
+    {showLocale && <TextInput label="Locale" source="locale" alwaysOn />}
+  </Filter>)
+};
+
+const ListActions = (props) => {
+  const { filterValues } = useListContext();
+  localStorage.setItem("locale", filterValues.locale);
+  return (<TopToolbar>
     <CreateButton />
     <ExportButton />
     <FileUploadButton />
-  </TopToolbar>
-);
+  </TopToolbar>)
+};
 
 const FileUploadButton = () => {
   const [selectedFile, setSelectedFile] = useState(null);
