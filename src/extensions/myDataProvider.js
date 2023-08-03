@@ -20,17 +20,17 @@ const myDataProvider = {
   },
   create: (resource, params) => {
     const locale = (params.data || {}).locale || (params.filter || {}).locale;
-    console.log("CHANDA locale")
-    console.log(locale)
+    console.log("in my data provider");
+    console.log(params.data);
     if (typeof(locale) !== "undefined") {
       localStorage.setItem("locale", locale);
     }
 
-    if (typeof params.data.photo == "undefined") {
+    if (typeof params.data.photo == "undefined" && window.location.href.includes("multi_choice_options")) {
       // fallback to the default implementation
       return dataProvider.create(resource, params);
     }
-    if (typeof params.data.photo !== "undefined") {
+    if (typeof params.data.photo !== "undefined" && window.location.href.includes("multi_choice_options")) {
       if (params.data.photo.rawFile !== undefined) {
         let rawFile = params.data.photo.rawFile;
         form.set("photo", rawFile);
@@ -40,11 +40,32 @@ const myDataProvider = {
       form.set("order", params.data.order);
       form.set("question_id", params.data.question_id);
       
-      console.log('DATEA');
-      console.log(params.data)
       headers.append("Authorization", `Basic ${token}`);
       headers.append("Accept-Language", localStorage.getItem("locale"));
 
+      return fetch(`${HOST}/${resource}`, {
+        method: "POST",
+        body: form,
+        headers: headers,
+      })
+        .then((response) => response.json())
+        .then((json) => ({ data: { id: json.id } }));
+    }
+
+    if (typeof params.data.file == "undefined" && window.location.href.includes("documents")) {
+      // fallback to the default implementation
+      return dataProvider.create(resource, params);
+    }
+
+    if (typeof params.data.file !== "undefined" && window.location.href.includes("documents")) {
+      if (params.data.file.rawFile !== undefined) {
+        let rawFile = params.data.file.rawFile;
+        form.set("file", rawFile);
+        form.set("name", rawFile.name); 
+      }    
+          
+      headers.append("Authorization", `Basic ${token}`);
+      headers.append("Accept-Language", localStorage.getItem("locale"));
       return fetch(`${HOST}/${resource}`, {
         method: "POST",
         body: form,
@@ -60,11 +81,11 @@ const myDataProvider = {
     if (typeof locale !== "undefined") {
       localStorage.setItem("locale", locale);
     }
-    if (typeof params.data.photo == "undefined") {
+    if (typeof params.data.photo == "undefined" && window.location.href.includes("multi_choice_options")) {
       // fallback to the default implementation
       return dataProvider.update(resource, params);
     }
-    if (typeof params.data.photo !== "undefined") {
+    if (typeof params.data.photo !== "undefined" && window.location.href.includes("multi_choice_options")) {
       if (typeof params.data.photo.rawFile !== "undefined") {
         let rawFile = params.data.photo.rawFile;
         form.set("photo", rawFile);
@@ -85,8 +106,9 @@ const myDataProvider = {
         .then((json) => ({ data: { id: json.id } }));
     }
 
-    if (typeof params.data.file !== "undefined") {
+    if (typeof params.data.file !== "undefined" && window.location.href.includes("documents")) {
       let rawFile = params.data.file.rawFile;
+      let form = new FormData();
 
       form.set("file", rawFile);
       form.set("name", rawFile.name);
@@ -95,15 +117,12 @@ const myDataProvider = {
       const headers = new Headers();
 
       headers.append("Authorization", `Basic ${token}`);
-      fetch(`${HOST}/${resource}`, {
-        method: "POST",
-        body: form,
-        headers: headers,
-      })
+
+      return fetch(`${HOST}/${resource}/${params.data.id}`, { method: "PUT", body: form, headers: headers })
         .then((response) => response.json())
-        .then((json) => ({ data: { id: json.id } }));
+        .then((json) => ( { data: { id: json.id }} ))
     }
   },
 };
-//console.log(myDataProvider);
+
 export default myDataProvider;
