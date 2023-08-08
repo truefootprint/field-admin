@@ -26,10 +26,6 @@ const myDataProvider = {
       localStorage.setItem("locale", locale);
     }
 
-    if (typeof params.data.photo == "undefined" && window.location.href.includes("multi_choice_options")) {
-      // fallback to the default implementation
-      return dataProvider.create(resource, params);
-    }
     if (typeof params.data.photo !== "undefined" && window.location.href.includes("multi_choice_options")) {
       if (params.data.photo.rawFile !== undefined) {
         let rawFile = params.data.photo.rawFile;
@@ -52,11 +48,6 @@ const myDataProvider = {
         .then((json) => ({ data: { id: json.id } }));
     }
 
-    if (typeof params.data.file == "undefined" && window.location.href.includes("documents")) {
-      // fallback to the default implementation
-      return dataProvider.create(resource, params);
-    }
-
     if (typeof params.data.file !== "undefined" && window.location.href.includes("documents")) {
       if (params.data.file.rawFile !== undefined) {
         let rawFile = params.data.file.rawFile;
@@ -74,16 +65,17 @@ const myDataProvider = {
         .then((response) => response.json())
         .then((json) => ({ data: { id: json.id } }));
     }
+
+    if (typeof params.data.photo == "undefined" || typeof params.data.file == "undefined") {
+      // fallback to the default implementation
+      return dataProvider.create(resource, params);
+    }
   },
   update: (resource, params) => {
     const locale = (params.data || {}).locale || (params.filter || {}).locale;
 
     if (typeof locale !== "undefined") {
       localStorage.setItem("locale", locale);
-    }
-    if (typeof params.data.photo == "undefined" && window.location.href.includes("multi_choice_options")) {
-      // fallback to the default implementation
-      return dataProvider.update(resource, params);
     }
     if (typeof params.data.photo !== "undefined" && window.location.href.includes("multi_choice_options")) {
       if (typeof params.data.photo.rawFile !== "undefined") {
@@ -121,6 +113,11 @@ const myDataProvider = {
       return fetch(`${HOST}/${resource}/${params.data.id}`, { method: "PUT", body: form, headers: headers })
         .then((response) => response.json())
         .then((json) => ( { data: { id: json.id }} ))
+    }
+
+    if (typeof params.data.photo == "undefined" || typeof params.data.file == "undefined") {
+      // fallback to the default implementation
+      return dataProvider.create(resource, params);
     }
   },
 };
