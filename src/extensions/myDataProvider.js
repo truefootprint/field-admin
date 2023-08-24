@@ -117,7 +117,7 @@ const myDataProvider = {
 
     if (typeof params.data.photo == "undefined" || typeof params.data.file == "undefined") {
       // fallback to the default implementation
-      return dataProvider.create(resource, params);
+      return dataProvider.update(resource, params);
     }
   },
 };
