@@ -14,14 +14,10 @@ const myDataProvider = {
   ...dataProvider,
   createMany: (resource, params) => {
     const items = params.data;
-    console.log("CSV22")
-    console.log(params.data)
-    // Handle create many here
   },
   create: (resource, params) => {
     const locale = (params.data || {}).locale || (params.filter || {}).locale;
-    console.log("in my data provider");
-    console.log(params.data);
+
     if (typeof(locale) !== "undefined") {
       localStorage.setItem("locale", locale);
     }
