@@ -5,12 +5,6 @@ import createResource from "../extensions/create_resource";
 export default createResource({
   name: "activities",
   showLocale: true,
-
-  formFields: (props) => [
-    <TextInput source="name" />,
-  ],
-
-  gridFields: (props) => [
-    <TextField source="name" />,
-  ],
+  formFields: <TextInput source="name" />,
+  gridFields: <TextField source="name" />,
 });

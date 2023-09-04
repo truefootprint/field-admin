@@ -5,7 +5,7 @@ import createResource from "../extensions/create_resource";
 export default createResource({
   name: "involvements",
 
-  formFields: (props) => [
+  formFields: [
     <NumberInput label="Project activity id" source="project_activity_id" />,
 
     <ReferenceInput source="user_id" reference="users" perPage={100}>
@@ -13,7 +13,7 @@ export default createResource({
     </ReferenceInput>,
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <ReferenceField source="project_activity_id" reference="project_activities">
       <TextField source="id" />
     </ReferenceField>,

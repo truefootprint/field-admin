@@ -6,7 +6,7 @@ import createResource from "../extensions/create_resource";
 export default createResource({
   name: "issue_notes",
 
-  formFields: (props) => [
+  formFields: [
     <ReferenceInput source="issue_id" reference="issues" perPage={100}>
       <SelectInput optionText="id" />
     </ReferenceInput>,
@@ -20,7 +20,7 @@ export default createResource({
     <BooleanInput source="resolved" />,
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <ReferenceField source="issue_id" reference="issues">
       <TextField source="uuid" />
     </ReferenceField>,

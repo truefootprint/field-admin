@@ -6,11 +6,11 @@ export default createResource({
   name: "topics",
   showLocale: true,
 
-  formFields: (props) => [
+  formFields: [
     <TextInput source="name" />,
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <TextField source="name" />,
   ],
 });

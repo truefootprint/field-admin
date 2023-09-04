@@ -6,14 +6,14 @@ import QuestionInput from "../components/question_input";
 export default createResource({
   name: "completion_questions",
 
-  formFields: (props) => [
+  formFields: [
     <QuestionInput.TopicSelector />,
     <QuestionInput.QuestionSelector />,
-
+    
     <TextInput source="completion_value" />,
   ],
 
-  gridFields: (props) => [
+  gridFields:[
     <ReferenceField source="question_id" reference="questions">
       <TextField source="text" />
     </ReferenceField>,

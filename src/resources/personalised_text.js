@@ -6,7 +6,7 @@ export default createResource({
   name: "personalised_text",
   showLocale: true,
 
-  formFields: (props) => [
+  formFields: [
     <ReferenceInput source="user_interface_text_id" reference="user_interface_text" perPage={100}>
       <SelectInput optionText="key" />
     </ReferenceInput>,
@@ -15,7 +15,7 @@ export default createResource({
     <TextInput source="value" multiline />,
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <ReferenceField source="user_interface_text_id" reference="user_interface_text">
       <TextField source="key" />
     </ReferenceField>,

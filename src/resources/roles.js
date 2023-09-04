@@ -6,12 +6,12 @@ export default createResource({
   name: "roles",
   showLocale: true,
 
-  formFields: (props) => [
+  formFields: [
     <TextInput source="name" />,
     <TextInput source="display_name" />,
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <TextField source="name" />,
   ],
 });

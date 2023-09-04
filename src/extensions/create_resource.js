@@ -22,24 +22,24 @@ import Modal from "@mui/material/Modal";
 import { useFilePicker } from "use-file-picker";
 import { useListContext } from 'react-admin';
 
-const form = (props, formFields, showLocale, newRecord = true) => {
+const form = (formFields, showLocale, newRecord = true) => {
   //const newRecord = props.location.pathname.match(/create/);
   const locale = localStorage.getItem("locale");
   return (
     <SimpleForm>
       {newRecord ? null : <TextField source="id" />}
       {showLocale ? <TextInput label="Locale" source="locale" defaultValue={locale} /> : null}
-      {formFields(props)}
+      {formFields}
       {newRecord ? null : <TextField source="created_at" />}
       {newRecord ? null : <TextField source="updated_at" />}
     </SimpleForm>
   );
 };
 
-const grid = (props, gridFields) => (
+const grid = (gridFields) => (
   <Datagrid rowClick="edit">
     <TextField source="id" />
-    {gridFields(props)}
+    {gridFields}
     <DateField source="created_at" showTime />
     <DateField source="updated_at" showTime />
   </Datagrid>
@@ -52,7 +52,7 @@ const filters = (showLocale) => {
   </Filter>)
 };
 
-const ListActions = (props) => {
+const ListActions = () => {
   const { filterValues } = useListContext();
   localStorage.setItem("locale", filterValues.locale);
   return (<TopToolbar>
@@ -142,23 +142,12 @@ const style = {
 
 const createResource = ({ name, formFields, gridFields, showLocale }) => ({
   name: name,
-  edit: (props) => (
-    <Edit {...props}>{form(props, formFields, showLocale, false)}</Edit>
-  ),
-  create: (props) => (
-    <Create {...props}>{form(props, formFields, showLocale)}</Create>
-  ),
-  list: (props) => (
-    <List
-      {...props}
-      perPage={100}
-      filters={filters(showLocale)}
-      filterDefaultValues={{ locale: "en" }}
-      actions={<ListActions />}
-    >
-      {grid(props, gridFields)}
-    </List>
-  ),
+  edit: <Edit>{form(formFields, showLocale, false)}</Edit>,
+  create: <Create>{form(formFields, showLocale)}</Create>,
+  list: <List perPage={100} filters={filters(showLocale)} filterDefaultValues={{ locale: "en" }}
+    actions={<ListActions />}>
+      {grid(gridFields)}
+    </List>,
 });
 
 export default createResource;

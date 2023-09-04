@@ -6,7 +6,7 @@ import createResource from "../extensions/create_resource";
 export default createResource({
   name: "issues",
 
-  formFields: (props) => [
+  formFields: [
     <ReferenceInput source="subject_type" reference="issue_subject_types" perPage={100}>
       <RadioButtonGroupInput optionText="id" />
     </ReferenceInput>,
@@ -20,7 +20,7 @@ export default createResource({
     <TextInput source="description" multiline/>,
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <TextField source="uuid" />,
     <TextField source="subject_type" />,
     <NumberField label="Subject id" source="subject_id" />,

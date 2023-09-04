@@ -15,7 +15,7 @@ export default createResource({
   name: "multi_choice_options",
   showLocale: true,
 
-  formFields: (props) => [
+  formFields: [
     <ReferenceInput source="question_id" 
     reference="questions" filter={{ type: "MultiChoiceQuestion" }} 
     perPage={100}>
@@ -31,7 +31,7 @@ export default createResource({
     </ImageInput>
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <ReferenceField source="question_id" reference="questions">
       <TextField source="text" />
     </ReferenceField>,

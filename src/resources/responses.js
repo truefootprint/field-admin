@@ -7,7 +7,7 @@ import UnitInput from "../components/unit_input";
 export default createResource({
   name: "responses",
 
-  formFields: (props) => [
+  formFields: [
     <NumberInput label="Project question id" source="project_question_id" />,
 
     <ReferenceInput source="user_id" reference="users" perPage={100}>
@@ -20,7 +20,7 @@ export default createResource({
     <UnitInput.UnitSelector />,
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <ReferenceField source="project_question_id" reference="project_questions">
       <TextField source="id" />
     </ReferenceField>,

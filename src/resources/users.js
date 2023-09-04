@@ -5,13 +5,13 @@ import createResource from "../extensions/create_resource";
 export default createResource({
   name: "users",
 
-  formFields: (props) => [
+  formFields: [
     <TextInput source="name" />,
     <TextInput source="country_code" />,
     <TextInput source="phone_number" />,
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <TextField source="interviewer_id" />,
     <TextField source="name" />,
     <TextField source="country_code" />,

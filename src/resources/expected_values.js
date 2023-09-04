@@ -8,7 +8,7 @@ export default createResource({
   name: "expected_values",
   showLocale: true,
 
-  formFields: (props) => [
+  formFields: [
     <NumberInput label="Project question id" source="project_question_id" />,
 
     <TextInput source="value" />,
@@ -18,7 +18,7 @@ export default createResource({
     <UnitInput.UnitSelector />,
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <ReferenceField source="project_question_id" reference="project_questions">
       <TextField source="id" />
     </ReferenceField>,

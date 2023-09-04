@@ -9,7 +9,7 @@ export default createResource({
   name: "questions",
   showLocale: true,
 
-  formFields: (props) => [
+  formFields: [
     <TextInput source="text" />,
 
     <ReferenceInput source="topic_id" reference="topics" perPage={100}>
@@ -38,7 +38,7 @@ export default createResource({
     <UnitInput.UnitSelector />,
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <TextField source="text" />,
 
     <ReferenceField source="topic_id" reference="topics">

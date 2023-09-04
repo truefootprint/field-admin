@@ -5,7 +5,7 @@ import createResource from "../extensions/create_resource";
 export default createResource({
   name: "visibilities",
 
-  formFields: (props) => [
+  formFields: [
     <ReferenceInput source="subject_type" reference="visibility_subject_types" perPage={100}>
       <SelectInput optionText="id" />
     </ReferenceInput>,
@@ -19,7 +19,7 @@ export default createResource({
     <NumberInput label="Visible to id" source="visible_to_id" />,
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <TextField source="subject_type" />,
     <NumberField label="Subject id" source="subject_id" />,
 
