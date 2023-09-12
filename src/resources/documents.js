@@ -6,12 +6,12 @@ export default createResource({
   name: "documents",
 
   formFields: [
-    <FileInput source="file">
-      <FileField source="url" title="name" />
+    <FileInput source="file" accept="application/pdf">
+      <FileField source="src" title="title" />
     </FileInput>,
   ],
 
   gridFields: [
-    <FileField source="file.url" title="file.name" label="File" />,
+    <FileField source="file.src" title="file.title" label="File" />,
   ],
 });

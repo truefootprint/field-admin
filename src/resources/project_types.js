@@ -7,7 +7,6 @@ export default createResource({
 
   formFields: [
     <TextInput source="name" />,
-    <ImageField source="photo" title="title" />,
     <ImageInput source="photo" label="Banner Image" accept="image/*">
       <ImageField source="src" title="title" />
     </ImageInput>,

@@ -25,7 +25,6 @@ export default createResource({
     <TextInput source="text" validate={[required()]} />,
 
     <NumberInput source="order" />,
-    <ImageField source="photo" title="title" />,
     <ImageInput source="photo" label="Related pictures" accept="image/*">
          <ImageField source="src" title="title" />
     </ImageInput>
