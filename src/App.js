@@ -1,12 +1,7 @@
 import React from "react";
 import { Admin, Resource } from "react-admin";
-import jsonServerProvider from "ra-data-json-server";
 import authProvider from "./extensions/auth_provider";
-import httpClient from "./extensions/http_client";
-import withFileUpload from "./extensions/with_file_upload";
-import withLocale from "./extensions/with_locale";
-import myDataProvider from "./extensions/myDataProvider";
-import { HOST } from "./consts";
+import dataProvider from "./extensions/data_provider";
 
 import questions from "./resources/questions";
 import activities from "./resources/activities";
@@ -40,12 +35,8 @@ import user_interface_text from "./resources/user_interface_text";
 import users from "./resources/users";
 import visibilities from "./resources/visibilities";
 
-//withLocale(
-//const dataProvider = withFileUpload(myDataProvider);
-
-
 const App = () => (
-  <Admin dataProvider={myDataProvider} authProvider={authProvider}>
+  <Admin dataProvider={dataProvider} authProvider={authProvider}>
     <Resource {...activities} />
     <Resource {...completion_questions} />
     <Resource {...default_activities} />
