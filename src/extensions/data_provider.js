@@ -8,15 +8,15 @@ const baseDataProvider = jsonServerProvider(HOST, httpClient);
 const dataProvider = withLifecycleCallbacks(baseDataProvider, [
   {
     resource: 'projects',
-    beforeSave: async (data, dataProvider) => (await imageToBase64(data))
+    beforeSave: async (data, dataProvider) => (await processImage(data))
   },
   {
     resource: 'project_types',
-    beforeSave: async (data, dataProvider) => (await imageToBase64(data))
+    beforeSave: async (data, dataProvider) => (await processImage(data))
   },
   {
     resource: 'multi_choice_options',
-    beforeSave: async (data, dataProvider) => (await imageToBase64(data))
+    beforeSave: async (data, dataProvider) => (await processImage(data))
   },
   {
     resource: 'documents',
@@ -29,7 +29,11 @@ const dataProvider = withLifecycleCallbacks(baseDataProvider, [
   },
 ]);
 
-const imageToBase64 = async (data) => {
+const processImage = async (data) => {
+  if (data.photo?.hasOwnProperty("src")) {
+    delete data.photo
+  }
+
   if (data.photo?.rawFile !== undefined) {
     data.photo.rawFile = await convertFileToBase64(data.photo.rawFile)
   }
