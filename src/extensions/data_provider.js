@@ -30,7 +30,7 @@ const dataProvider = withLifecycleCallbacks(baseDataProvider, [
 ]);
 
 const processImage = async (data) => {
-  if (data.photo?.hasOwnProperty("src")) {
+  if (data.photo?.hasOwnProperty("src") && data.photo?.rawFile == undefined) {
     delete data.photo
   }
 
