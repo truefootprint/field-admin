@@ -14,7 +14,7 @@ export default createResource({
   name: "projects",
   showLocale: true,
 
-  formFields: (props) => [
+  formFields: [
     <ReferenceInput source="programme_id" reference="programmes" perPage={100}>
       <SelectInput optionText="name" />
     </ReferenceInput>,
@@ -28,15 +28,14 @@ export default createResource({
     </ReferenceInput>,
 
     <TextInput source="name" />,
-    <ImageField source="photo" title="title" />,
     <ImageInput source="photo" label="Banner Image" accept="image/*">
       <ImageField source="src" title="title" />
     </ImageInput>,
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <ReferenceField source="programme_id" reference="programmes">
-      <TextField source="nattme" />
+      <TextField source="name" />
     </ReferenceField>,
 
     <ReferenceField source="project_type_id" reference="project_types">

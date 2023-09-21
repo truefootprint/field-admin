@@ -6,12 +6,12 @@ export default createResource({
   name: "programmes",
   showLocale: true,
 
-  formFields: (props) => [
+  formFields: [
     <TextInput source="name" />,
     <TextInput source="description" multiline/>,
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <TextField source="name" />,
     <TextField source="description" />,
   ],

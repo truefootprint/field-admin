@@ -6,7 +6,7 @@ export default createResource({
   name: "units",
   showLocale: true,
 
-  formFields: (props) => [
+  formFields: [
     <TextInput source="official_name" />,
 
     <ReferenceInput source="type" reference="unit_types" perPage={100}>
@@ -17,7 +17,7 @@ export default createResource({
     <TextInput source="plural" />,
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <TextField source="official_name" />,
     <TextField source="type" />,
     <TextField source="singular" />,

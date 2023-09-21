@@ -5,13 +5,13 @@ import createResource from "../extensions/create_resource";
 export default createResource({
   name: "documents",
 
-  formFields: (props) => [
-    <FileInput source="file">
-      <FileField source="url" title="name" />
+  formFields: [
+    <FileInput source="file" accept="application/pdf">
+      <FileField source="src" title="title" />
     </FileInput>,
   ],
 
-  gridFields: (props) => [
-    <FileField source="file.url" title="file.name" label="File" />,
+  gridFields: [
+    <FileField source="file.src" title="file.title" label="File" />,
   ],
 });

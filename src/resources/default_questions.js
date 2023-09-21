@@ -6,7 +6,7 @@ import QuestionInput from "../components/question_input";
 export default createResource({
   name: "default_questions",
 
-  formFields: (props) => [
+  formFields: [
     <ReferenceInput source="activity_id" reference="activities" perPage={100}>
       <SelectInput optionText="name" />
     </ReferenceInput>,
@@ -20,7 +20,7 @@ export default createResource({
     <TextInput label="Question response trigger" source="child_response_trigger" />,
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <ReferenceField source="activity_id" reference="activities">
       <TextField source="name" />
     </ReferenceField>,

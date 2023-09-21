@@ -9,7 +9,7 @@ export default createResource({
   name: "default_expected_values",
   showLocale: true,
 
-  formFields: (props) => [
+  formFields: [
     <QuestionInput.TopicSelector />,
     <QuestionInput.QuestionSelector />,
 
@@ -23,7 +23,7 @@ export default createResource({
     <UnitInput.UnitSelector />,
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <ReferenceField source="question_id" reference="questions">
       <TextField source="text" />
     </ReferenceField>,

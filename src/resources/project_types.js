@@ -5,15 +5,14 @@ import createResource from "../extensions/create_resource";
 export default createResource({
   name: "project_types",
 
-  formFields: (props) => [
+  formFields: [
     <TextInput source="name" />,
-    <ImageField source="photo" title="title" />,
     <ImageInput source="photo" label="Banner Image" accept="image/*">
       <ImageField source="src" title="title" />
     </ImageInput>,
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <TextField source="name" />,
   ],
 });

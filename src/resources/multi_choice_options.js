@@ -15,7 +15,7 @@ export default createResource({
   name: "multi_choice_options",
   showLocale: true,
 
-  formFields: (props) => [
+  formFields: [
     <ReferenceInput source="question_id" 
     reference="questions" filter={{ type: "MultiChoiceQuestion" }} 
     perPage={100}>
@@ -25,13 +25,12 @@ export default createResource({
     <TextInput source="text" validate={[required()]} />,
 
     <NumberInput source="order" />,
-    <ImageField source="photo" title="title" />,
     <ImageInput source="photo" label="Related pictures" accept="image/*">
          <ImageField source="src" title="title" />
     </ImageInput>
   ],
 
-  gridFields: (props) => [
+  gridFields: [
     <ReferenceField source="question_id" reference="questions">
       <TextField source="text" />
     </ReferenceField>,
