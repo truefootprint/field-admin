@@ -1,5 +1,12 @@
 import React from "react";
-import { TextField, ReferenceInput, ReferenceField, RadioButtonGroupInput, NumberField, SelectInput, NumberInput } from "react-admin";
+import { 
+  TextField, 
+  ReferenceInput, 
+  ReferenceField, 
+  NumberField, 
+  SelectInput, 
+  NumberInput 
+} from "react-admin";
 import createResource from "../extensions/create_resource";
 
 export default createResource({

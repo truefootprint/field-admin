@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { HOST } from "../consts";
 import {
-  useRecordContext,
   CreateButton,
   ExportButton,
   SimpleForm,
@@ -17,9 +16,7 @@ import {
 } from "react-admin";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { useFilePicker } from "use-file-picker";
 import { useListContext } from 'react-admin';
 
 const form = (formFields, showLocale, newRecord = true) => {
@@ -63,20 +60,14 @@ const ListActions = () => {
 };
 
 const FileUploadButton = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
   const [open, setOpen] = useState(false);
   const [userReport, setUserReport] = useState("");
-  const handleOpen = () => setOpen(true);
   const handleClose = () => { setUserReport("");setOpen(false)};
 
-  const activateLasers = () => {
-    console.log("chanda chance");
-  };
-  const chanda = (e) => {
+  const onFileChange = (e) => {
     setOpen(true);
     setUserReport("Uploading...");
     const token = localStorage.getItem("token");
-    console.log(token);
     const headers = new Headers();
     const formData = new FormData();
 
@@ -91,8 +82,6 @@ const FileUploadButton = () => {
     })
       .then((response) => response.json()).then((json) => {
         setOpen(true);
-        console.log("THE RESPONSE");
-        console.log(json.data);
         setUserReport(json.data);
       });
   };
@@ -121,7 +110,7 @@ const FileUploadButton = () => {
       </Modal>
       
       <Button variant="contained" component="label">
-        <input type="file" onChange={chanda} />
+        <input type="file" onChange={onFileChange} />
       </Button>
     </>
     // </form>
