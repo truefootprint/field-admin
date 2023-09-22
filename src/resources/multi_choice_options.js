@@ -2,15 +2,6 @@ import React from "react";
 import { required, ImageField, ImageInput, TextInput, TextField, ReferenceInput, SelectInput, NumberInput, NumberField, ReferenceField } from "react-admin";
 import createResource from "../extensions/create_resource";
 
-const PreviewImage = ({ record, source }) => {
-  if (typeof (record) == "string") {
-      record = {
-          [source]: record
-      }
-  }
-  return <ImageField record={record} source={source} />
-}
-
 export default createResource({
   name: "multi_choice_options",
   showLocale: true,
