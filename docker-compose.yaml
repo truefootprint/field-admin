@@ -1,0 +1,15 @@
+version: '3.4'
+services:
+  app:
+    tty: true
+    stdin_open: true
+    image: ${COMMIT_IMAGE_URI}
+    build:
+      context: .
+    env_file:
+      - .env
+    ports:
+      - 9090:9090
+    volumes:
+      - .:/app:delegated
+    command: cat
