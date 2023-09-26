@@ -1,12 +1,16 @@
 import React from "react";
-import { TextInput, TextField, NumberInput, ReferenceInput, SelectInput, ReferenceField } from "react-admin";
+import { TextInput, TextField, NumberInput, ReferenceInput, SelectInput, ReferenceField, ImageField } from "react-admin";
 import createResource from "../extensions/create_resource";
 
 import UnitInput from "../components/unit_input";
 
 export default createResource({
   name: "responses",
-
+  options: {
+    listPresentationParams: {
+      photos: false
+    }
+  },
   formFields: [
     <NumberInput label="Project question id" source="project_question_id" />,
 
@@ -18,6 +22,8 @@ export default createResource({
 
     <UnitInput.TypeSelector />,
     <UnitInput.UnitSelector />,
+
+    <ImageField source="photos" src="src" title="name" />
   ],
 
   gridFields: [

@@ -13,6 +13,11 @@ import createResource from "../extensions/create_resource";
 export default createResource({
   name: "projects",
   showLocale: true,
+  options: {
+    listPresentationParams: {
+      photo: false
+    }
+  },
 
   formFields: [
     <ReferenceInput source="programme_id" reference="programmes" perPage={100}>
@@ -29,7 +34,7 @@ export default createResource({
 
     <TextInput source="name" />,
     <ImageInput source="photo" label="Banner Image" accept="image/*">
-      <ImageField source="src" title="title" />
+      <ImageField source="src" title="name" />
     </ImageInput>,
   ],
 

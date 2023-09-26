@@ -5,30 +5,6 @@ import jsonServerProvider from "ra-data-json-server";
 
 const baseDataProvider = jsonServerProvider(HOST, httpClient);
 
-const dataProvider = withLifecycleCallbacks(baseDataProvider, [
-  {
-    resource: 'projects',
-    beforeSave: async (data, dataProvider) => (await processImage(data))
-  },
-  {
-    resource: 'project_types',
-    beforeSave: async (data, dataProvider) => (await processImage(data))
-  },
-  {
-    resource: 'multi_choice_options',
-    beforeSave: async (data, dataProvider) => (await processImage(data))
-  },
-  {
-    resource: 'documents',
-    beforeSave: async (data, dataProvider) => {
-      if (data.file?.rawFile !== undefined) {
-        data.file.rawFile = await convertFileToBase64(data.file.rawFile)
-      }
-      return data
-    }
-  },
-]);
-
 const processImage = async (data) => {
   if (data.photo?.hasOwnProperty("src") && data.photo?.rawFile === undefined) {
     delete data.photo
@@ -40,17 +16,64 @@ const processImage = async (data) => {
   return data
 }
 
-const convertFileToBase64 = async a_file => {
-  let a_function = file =>
+const generateSrcFor = (type) => async (data) => {
+  if (data[type] === undefined) return data
+
+  if (Array.isArray(data[type])) {
+    data[type] = data[type].reduce((acc, item) => {
+      item.src = `${HOST}${item.url}`
+      acc.push(item)
+      return acc
+    }, [])
+  } else {
+    data[type].src = `${HOST}${data[type].url}`
+  }
+
+  return data
+}
+
+const convertFileToBase64 = async file => {
+  let func = f =>
     new Promise((resolve, reject) => {
       const reader = new FileReader()
-      reader.readAsDataURL(file)
+      reader.readAsDataURL(f)
       reader.onload = () => {
-        let base64_string = String(reader.result).split(",")[1]
-        resolve(base64_string)
+        resolve(String(reader.result).split(",")[1])
       }
       reader.onerror = error => reject(error)
     })
-  return await a_function(a_file)
+  return await func(file)
 }
+
+const dataProvider = withLifecycleCallbacks(baseDataProvider, [
+  {
+    resource: 'projects',
+    beforeSave: processImage,
+    afterRead: generateSrcFor('photo'),
+  },
+  {
+    resource: 'project_types',
+    beforeSave: processImage,
+    afterRead: generateSrcFor('photo'),
+  },
+  {
+    resource: 'multi_choice_options',
+    beforeSave: processImage,
+    afterRead: generateSrcFor('photo'),
+  },
+  {
+    resource: 'responses',
+    afterRead: generateSrcFor('photos'),
+  },
+  {
+    resource: 'documents',
+    beforeSave: async (data, dataProvider) => {
+      if (data.file?.rawFile !== undefined) {
+        data.file.rawFile = await convertFileToBase64(data.file.rawFile)
+      }
+      return data
+    },
+    afterRead: generateSrcFor('file'),
+  }
+]);
 export default dataProvider;
