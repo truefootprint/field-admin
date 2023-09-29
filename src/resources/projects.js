@@ -7,15 +7,18 @@ import {
   ReferenceInput,
   SelectInput,
   ReferenceField,
+  Labeled,
 } from "react-admin";
 import createResource from "../extensions/create_resource";
+import Conditional from "../components/conditional/Conditional";
 
 export default createResource({
   name: "projects",
   showLocale: true,
   options: {
     listPresentationParams: {
-      photo: false
+      photo: false,
+      project_type_photo: false
     }
   },
 
@@ -36,6 +39,11 @@ export default createResource({
     <ImageInput source="photo" label="Banner Image" accept="image/*">
       <ImageField source="src" title="name" />
     </ImageInput>,
+    <Conditional when={d => !d.photo}>      
+      <Labeled label="Project type photo fallback">
+          <ImageField source="project_type_photo.src" title="project_type_photo.name" />
+      </Labeled>
+    </Conditional>,
   ],
 
   gridFields: [

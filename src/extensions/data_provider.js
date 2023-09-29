@@ -17,7 +17,7 @@ const processImage = async (data) => {
 }
 
 const generateSrcFor = (type) => async (data) => {
-  if (data[type] === undefined) return data
+  if (!data[type]) return data
 
   if (Array.isArray(data[type])) {
     data[type] = data[type].reduce((acc, item) => {
@@ -49,7 +49,13 @@ const dataProvider = withLifecycleCallbacks(baseDataProvider, [
   {
     resource: 'projects',
     beforeSave: processImage,
-    afterRead: generateSrcFor('photo'),
+    afterRead: async (data) => {
+      await Promise.all([
+        generateSrcFor('photo')(data),
+        generateSrcFor('project_type_photo')(data)
+      ])
+      return data
+    },
   },
   {
     resource: 'project_types',
