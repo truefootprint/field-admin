@@ -7,11 +7,11 @@ export default createResource({
 
   formFields: [
     <FileInput source="file" accept="application/pdf">
-      <FileField source="src" title="title" />
+      <FileField source="src" title="name" />
     </FileInput>,
   ],
 
   gridFields: [
-    <FileField source="file.src" title="file.title" label="File" />,
+    <FileField source="file.src" title="file.name" label="File" />,
   ],
 });

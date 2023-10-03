@@ -11,7 +11,7 @@ export default createResource({
     </ReferenceInput>,
 
     <ReferenceInput source="activity_id" reference="activities" perPage={100}>
-      <SelectInput />
+      <SelectInput optionText="name" />
     </ReferenceInput>,
 
     <NumberInput source="order" />,

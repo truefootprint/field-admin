@@ -59,6 +59,7 @@ const ListActions = () => {
   </TopToolbar>)
 };
 
+//FIXME
 const FileUploadButton = () => {
   const [open, setOpen] = useState(false);
   const [userReport, setUserReport] = useState("");
@@ -129,14 +130,25 @@ const style = {
   p: 4,
 };
 
-const createResource = ({ name, formFields, gridFields, showLocale }) => ({
+const presentationParams = (params) => {
+  if (params === undefined) return {}
+  return {
+    presentation: JSON.stringify(params)
+  }
+}
+
+const createResource = ({ name, formFields, gridFields, showLocale, options = {} }) => ({
   name: name,
   edit: <Edit>{form(formFields, showLocale, false)}</Edit>,
   create: <Create>{form(formFields, showLocale)}</Create>,
-  list: <List perPage={100} filters={filters(showLocale)} filterDefaultValues={{ locale: "en" }}
-    actions={<ListActions />}>
-      {grid(gridFields)}
-    </List>,
+  list: <List perPage={100}
+              filters={filters(showLocale)}
+              filterDefaultValues={{ locale: "en"}}
+              filter={ presentationParams(options.listPresentationParams) }
+              actions={<ListActions />}
+        >
+          {grid(gridFields)}
+        </List>,
 });
 
 export default createResource;

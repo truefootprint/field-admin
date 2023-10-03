@@ -5,6 +5,11 @@ import createResource from "../extensions/create_resource";
 export default createResource({
   name: "multi_choice_options",
   showLocale: true,
+  options: {
+    listPresentationParams: {
+      photo: false
+    }
+  },
 
   formFields: [
     <ReferenceInput source="question_id" 
@@ -17,7 +22,7 @@ export default createResource({
 
     <NumberInput source="order" />,
     <ImageInput source="photo" label="Related pictures" accept="image/*">
-         <ImageField source="src" title="title" />
+      <ImageField source="src" title="name" />
     </ImageInput>
   ],
 
