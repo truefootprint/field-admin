@@ -12,6 +12,6 @@ export default createResource({
   ],
 
   gridFields: [
-    <FileField source="file.src" title="file.title" label="File" />,
+    <FileField source="file.src" title="file.name" label="File" />,
   ],
 });
